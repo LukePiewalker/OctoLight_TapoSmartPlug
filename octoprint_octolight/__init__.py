@@ -13,8 +13,9 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
+# TODO how to import tapy.py from https://github.com/dswd/OctoPrint-PSUControl-Tapo
 
-class OctoLightPlugin(
+class OctoLightTapoPlugin(
 	octoprint.plugin.AssetPlugin,
 	octoprint.plugin.StartupPlugin,
 	octoprint.plugin.TemplatePlugin,
@@ -44,8 +45,9 @@ class OctoLightPlugin(
 
 	def get_settings_defaults(self):
 		return dict(
-			light_pin=13,
-			inverted_output=False,
+			address = '',
+            		username = '',
+            		password = '',
 			delay_off=5,
 
 			#Setup the default value for each event
@@ -93,6 +95,7 @@ class OctoLightPlugin(
 		self._logger.debug ("--------------------------------------------")
 
 		# Setting the default state of pin
+		# TODO MARKER
 		GPIO.setup(int(self._settings.get(["light_pin"])), GPIO.OUT)
 		if bool(self._settings.get(["inverted_output"])):
 			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.HIGH)
@@ -118,12 +121,14 @@ class OctoLightPlugin(
 
 	def light_toggle(self):
 		# Sets the GPIO every time, if user changed it in the settings.
+		# TODO MARKER
 		GPIO.setup(int(self._settings.get(["light_pin"])), GPIO.OUT)
 
 		self.light_state = not self.light_state
 		self.stopTimer()
 
 		# Sets the light state depending on the inverted output setting (XOR)
+		# TODO MARKER
 		if self.light_state ^ self._settings.get(["inverted_output"]):
 			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.HIGH)
 		else:
@@ -267,18 +272,18 @@ class OctoLightPlugin(
 	def get_update_information(self):
 		return dict(
 			octolight=dict(
-				displayName="OctoLight",
+				displayName="OctoLight_TapoSmartPlug",
 				displayVersion=self._plugin_version,
 				type="github_release",
 				current=self._plugin_version,
-				user="thomst08",
-				repo="OctoLight",
-				pip="https://github.com/thomst08/OctoLight/archive/{target}.zip"
+				user="LukePiewalker",
+				repo="OctoLight_TapoSmartPlug",
+				pip="https://github.com/LukePiewalker/OctoLight_TapoSmartPlug/archive/{target}.zip"
 			)
 		)
 
 __plugin_pythoncompat__ = ">=2.7,<4"
-__plugin_implementation__ = OctoLightPlugin()
+__plugin_implementation__ = OctoLightTapoPlugin()
 
 __plugin_hooks__ = {
 	"octoprint.plugin.softwareupdate.check_config":
