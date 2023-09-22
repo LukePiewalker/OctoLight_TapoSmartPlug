@@ -4,15 +4,15 @@ A simple plugin that adds a button to the navigation bar for toggling a GPIO pin
 ![WebUI interface](img/screenshoot.png)
 
 ## Setup
-Install via the bundled [Plugin Manager](https://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html)
-or manually using this URL:
+Install ~via the bundled [Plugin Manager](https://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html) or~ manually using this URL:
 
-	https://github.com/thomst08/OctoLight/archive/master.zip
+	https://github.com/LukePiewalker/OctoLight_TapoSmartPlug/archive/master.zip
 
 ## Configuration
 ![Settings panel](img/settings.png)
 
 Curently, you can configure settings:
+> **⚠ Update me!**
 - `Light PIN`: The pin on the Raspberry Pi that the button controls.
 	- Default value: 13
 	- The pin number is saved in the **board layout naming** scheme (gray labels on the pinout image below).
@@ -50,3 +50,4 @@ _(if the action parameter not given, the action toggle will be used by default)_
 ## Thank you list
 Thank you goes out to the following people:
 - [@gigibu5]( https://github.com/gigibu5 ) - Creater of Octolight
+- [@thomst08]( https://github.com/thomst08 ) - Taking over the Plugin from @gigibu5
