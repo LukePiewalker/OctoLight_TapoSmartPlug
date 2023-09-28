@@ -42,6 +42,7 @@ class OctoLightTapoPlugin(
 
 	light_state = False
 	delayed_state = None
+	device = None
 
 	def get_settings_defaults(self):
 		return dict(
@@ -86,34 +87,27 @@ class OctoLightTapoPlugin(
 		self._logger.debug ("--------------------------------------------")
 		self._logger.debug ("OctoLight started, listening for GET request")
 		self._logger.debug (
-			"Light pin: {}, inverted_input: {}, Delay Time: {}".format(
-				self._settings.get(["light_pin"]),
-				self._settings.get(["inverted_output"]),
+			"Adresse: {}, username: {}, password: {}, Delay Time: {}".format(
+				self._settings.get(["address"]),
+				self._settings.get(["username"]),
+				self._settings.get(["password"]),
 				self._settings.get(["delay_off"])
 			)
-		)
+		)		
 		self._logger.debug ("--------------------------------------------")
 
 		# Setting the default state of pin
-		# TODO MARKER
-		GPIO.setup(int(self._settings.get(["light_pin"])), GPIO.OUT)
-		if bool(self._settings.get(["inverted_output"])):
-			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.HIGH)
-		else:
-			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.LOW)
 
-		#Because light is set to ff on startup we don't need to retrieve the current state
-		"""
-		r = self.light_state = GPIO.input(int(self._settings.get(["light_pin"])))
-        if r==1:
-                self.light_state = False
-        else:
-                self.light_state = True
+		try:
+		    tapo.log = self._logger
+		    self.device = P100(self._settings.get(["address"]),
+				       self._settings.get(["username"]),
+				       self._settings.get(["password"])
+				      )
+		except:
+            		self._logger.exception(f"Failed to connect to Tapo device")
 
-        self._logger.info("After Startup. Light state: {}".format(
-                self.light_state
-        ))
-        """
+		self.device.set_status(self.light_state)
 
 		self._plugin_manager.send_plugin_message(
 			self._identifier, dict(isLightOn=self.light_state)
@@ -122,17 +116,12 @@ class OctoLightTapoPlugin(
 	def light_toggle(self):
 		# Sets the GPIO every time, if user changed it in the settings.
 		# TODO MARKER
-		GPIO.setup(int(self._settings.get(["light_pin"])), GPIO.OUT)
-
 		self.light_state = not self.light_state
 		self.stopTimer()
 
+		self.device.set_status(self.light_state)
+
 		# Sets the light state depending on the inverted output setting (XOR)
-		# TODO MARKER
-		if self.light_state ^ self._settings.get(["inverted_output"]):
-			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.HIGH)
-		else:
-			GPIO.output(int(self._settings.get(["light_pin"])), GPIO.LOW)
 
 		self._logger.debug ("Got request. Light state: {}".format(self.light_state))
 
