@@ -109,8 +109,6 @@ class OctoLightTapoPlugin(
 		)
 
 	def light_toggle(self):
-		# Sets the GPIO every time, if user changed it in the settings.
-		# TODO MARKER
 		self.light_state = not self.light_state
 		self.stopTimer()
 
