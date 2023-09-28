@@ -8,11 +8,6 @@ import flask
 import math
 from octoprint.util import RepeatedTimer
 
-import RPi.GPIO as GPIO
-
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
-
 # TODO how to import tapy.py from https://github.com/dswd/OctoPrint-PSUControl-Tapo
 
 class OctoLightTapoPlugin(
