@@ -116,8 +116,6 @@ class OctoLightTapoPlugin(
 
 		self.device.set_status(self.light_state)
 
-		# Sets the light state depending on the inverted output setting (XOR)
-
 		self._logger.debug ("Got request. Light state: {}".format(self.light_state))
 
 		self._plugin_manager.send_plugin_message(
