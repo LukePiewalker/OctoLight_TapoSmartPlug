@@ -4,27 +4,27 @@
 ### Do not forget to adjust the following variables to your own plugin.
 
 # The plugin's identifier, has to be unique
-plugin_identifier = "octolight"
+plugin_identifier = "octolight_tapo"
 
 # The plugin's python package, should be "octoprint_<plugin identifier>", has to be unique
-plugin_package = "octoprint_octolight"
+plugin_package = "octoprint_octolight_tapo"
 
 # The plugin's human readable name. Can be overwritten within OctoPrint's internal data via __plugin_name__ in the
 # plugin module
-plugin_name = "OctoLight"
+plugin_name = "OctoLight_TapoSmartPlug"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
 plugin_version = "0.1.6"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = """A simple plugin, that add's a button to the navbar, toggleing GPIO on the RPi. It can be used for turning on and off a light."""
+plugin_description = """A simple plugin, that add's a button to the navbar, toggleing a tapo smart plug which can be used for turning on and off a light."""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "Steven Thomson"
+plugin_author = "LukePiewalker"
 
 # The plugin's author's mail address.
-plugin_author_email = "thomst08@hotmail.com"
+plugin_author_email = "zeron4rock@web.de"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
 plugin_url = "https://github.com/LukePiewalker/OctoLight_TapoSmartPlug"
