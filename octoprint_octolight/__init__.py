@@ -11,6 +11,7 @@ import os
 
 # TODO how to import tapy.py from https://github.com/dswd/OctoPrint-PSUControl-Tapo
 from octoprint_psucontrol_tapo.tapo import P100
+from octoprint_psucontrol_tapo import tapo
 
 class OctoLightTapoPlugin(
 	octoprint.plugin.AssetPlugin,
