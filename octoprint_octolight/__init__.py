@@ -101,7 +101,7 @@ class OctoLightTapoPlugin(
 		    self.device = P100(self._settings.get(["address"]),
 				       self._settings.get(["username"]),
 				       self._settings.get(["password"]),
-				       keypair_file = os.path.join(os.environ['USERPROFILE'], "My Documents")
+				       keypair_file = os.path.join(os.environ['USERPROFILE'], "tapo_light.key")
 				      )
 		except:
             		self._logger.exception(f"Failed to connect to Tapo device")
