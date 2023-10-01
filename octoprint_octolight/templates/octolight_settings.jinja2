@@ -1,19 +1,24 @@
 <form class="form-horizontal">
 	<h3>OctoLight settings</h3>
-	<div class="control-group">
-		<label class="control-label">Address</label>
-		<div class="controls">
+		<h4>General</h4>
+		<div class="control-group">
 			<label class="control-label">Address</label>
-			<input id="address-input" type="text" data-bind="value: settings.plugins.octolight.address">
+			<div class="controls">
+				<input id="address-input" type="text" data-bind="value: settings.plugins.octolight.address">
+			</div>
 		</div>
-		<div class="controls">
-  			<label class="control-label">Username</label>
-	        	<input type="text" class="input" data-bind="value: settings.plugins.octolight.username" placeholder="">
-	        </div>
-		<div class="controls">
-  			<label class="control-label">Password</label>
-			<input type="password" class="input" data-bind="value: settings.plugins.octolight.password" placeholder="">
-   		</div>
+		<div class="control-group">
+			<label class="control-label">Username</label>
+			<div class="controls">
+	        		<input type="text" class="input" data-bind="value: settings.plugins.octolight.username" placeholder="">
+	        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">Password</label>
+			<div class="controls">
+				<input type="password" class="input" data-bind="value: settings.plugins.octolight.password" placeholder="">
+   			</div>
+		</div>
 		<label class="control-label">{{ _('Delay Light Off (mins)') }}</label>
 		<div class="controls">
 			<input id="delay_off-input" type="number" min="1" max="60" class="input-small"
