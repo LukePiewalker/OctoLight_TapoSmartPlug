@@ -7,6 +7,7 @@ import flask
 
 import math
 from octoprint.util import RepeatedTimer
+import os
 
 # TODO how to import tapy.py from https://github.com/dswd/OctoPrint-PSUControl-Tapo
 from octoprint_psucontrol_tapo.tapo import P100
@@ -98,7 +99,8 @@ class OctoLightTapoPlugin(
 		    tapo.log = self._logger
 		    self.device = P100(self._settings.get(["address"]),
 				       self._settings.get(["username"]),
-				       self._settings.get(["password"])
+				       self._settings.get(["password"]),
+				       keypair_file = os.path.join(os.environ['USERPROFILE'], "My Documents")
 				      )
 		except:
             		self._logger.exception(f"Failed to connect to Tapo device")
